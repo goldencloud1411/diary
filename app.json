@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Haru Planner",
+    "slug": "haru-planner",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4EFE4"
+    },
+    "android": {
+      "package": "com.harudaily.planner",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F4EFE4"
+      }
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}

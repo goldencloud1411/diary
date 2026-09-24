@@ -1,0 +1,10 @@
+HARU PLANNER
+============
+
+1) Descomprime este proyecto.
+2) Sube TODO su contenido a un repositorio de GitHub, incluyendo .github
+3) En GitHub: Actions > Build Android APK > Run workflow
+4) Cuando termine: Artifacts > HaruPlanner-Android
+5) Descomprime el archivo descargado y abre HaruPlanner.apk en tu Android.
+
+Lee README.md para instrucciones completas.

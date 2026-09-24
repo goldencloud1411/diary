@@ -2,7 +2,7 @@
   "expo": {
     "name": "Haru Planner",
     "slug": "haru-planner",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -13,11 +13,20 @@
     },
     "android": {
       "package": "com.harudaily.planner",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F4EFE4"
       }
     },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Haru usa tus fotos solo para que elijas portadas de libros y audiolibros."
+        }
+      ]
+    ],
     "assetBundlePatterns": ["**/*"]
   }
 }

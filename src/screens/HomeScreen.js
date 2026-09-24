@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Pressable, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BriefcaseBusiness, GraduationCap, WalletCards, BookOpen, Droplets, CheckCircle2, Cat } from 'lucide-react-native';
+import { BriefcaseBusiness, GraduationCap, WalletCards, BookOpen, Droplets, CheckCircle2, Cat, CalendarDays } from 'lucide-react-native';
 import Card from '../components/Card';
 import ProgressBar from '../components/ProgressBar';
 import { colors, radius, spacing } from '../theme';
@@ -32,7 +32,7 @@ export default function HomeScreen({ navigation }) {
     { label: 'Trabajo', sub: `${state.tasks.filter(t => t.category === 'Trabajo' && !t.done).length} pendientes`, icon: BriefcaseBusiness, onPress: () => navigation.navigate('Tareas') },
     { label: 'Estudio', sub: `${state.tasks.filter(t => t.category === 'Estudio' && !t.done).length} pendientes`, icon: GraduationCap, onPress: () => navigation.navigate('Tareas') },
     { label: 'Finanzas', sub: `S/ ${balance.toFixed(2)}`, icon: WalletCards, onPress: () => navigation.navigate('Más', { screen: 'Finanzas' }) },
-    { label: 'Lectura', sub: `${state.books.length} libro${state.books.length === 1 ? '' : 's'}`, icon: BookOpen, onPress: () => navigation.navigate('Más', { screen: 'Lectura' }) },
+    { label: 'Lectura', sub: `${state.books.length} lectura${state.books.length === 1 ? '' : 's'}`, icon: BookOpen, onPress: () => navigation.navigate('Más', { screen: 'Lectura' }) },
   ];
 
   return (
@@ -114,6 +114,19 @@ export default function HomeScreen({ navigation }) {
           </Card>
         </Pressable>
 
+        <Pressable onPress={() => navigation.navigate('Más', { screen: 'Registro' })}>
+          <Card style={styles.trackerCard}>
+            <View style={styles.healthLeft}>
+              <View style={styles.quickIcon}><CalendarDays size={20} color={colors.ink} strokeWidth={1.8} /></View>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.quickLabel}>Registro diario</Text>
+                <Text style={styles.quickSub}>Calendario, rachas e historial de tu día</Text>
+              </View>
+              <Text style={styles.trackerArrow}>→</Text>
+            </View>
+          </Card>
+        </Pressable>
+
         <Card>
           <View style={styles.rowBetween}>
             <Text style={styles.cardEyebrow}>NOTA DEL DÍA · 메모</Text>
@@ -123,8 +136,8 @@ export default function HomeScreen({ navigation }) {
             multiline
             placeholder="Algo que no quiero olvidar hoy…"
             placeholderTextColor={colors.muted}
-            value={state.note}
-            onChangeText={setNote}
+            value={state.notes?.[key] || ''}
+            onChangeText={(text) => setNote(text, key)}
             style={styles.noteInput}
           />
         </Card>
@@ -169,6 +182,8 @@ const styles = StyleSheet.create({
   counterBtn: { width: 39, height: 39, borderRadius: 20, borderWidth: 1, borderColor: colors.ink, alignItems: 'center', justifyContent: 'center' },
   counterDark: { backgroundColor: colors.ink },
   counterText: { fontSize: 22, color: colors.ink, lineHeight: 24 },
+  trackerCard: { marginBottom: 12 },
+  trackerArrow: { color: colors.ink, fontSize: 22, fontWeight: '700' },
   koreanCard: { marginBottom: 12, backgroundColor: '#F0E7D7' },
   koreanWordRow: { flexDirection: 'row', alignItems: 'baseline', gap: 12, marginTop: 14 },
   koreanWord: { fontSize: 34, fontWeight: '900', color: colors.ink },

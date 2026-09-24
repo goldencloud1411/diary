@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, View, Text, StyleSheet, Pressable, Alert } from 'react-native';
-import { WalletCards, BookOpen, RotateCcw, ChevronRight, Database, HeartHandshake } from 'lucide-react-native';
+import { WalletCards, BookOpen, RotateCcw, ChevronRight, Database, HeartHandshake, CalendarDays } from 'lucide-react-native';
 import ScreenHeader from '../components/ScreenHeader';
 import Card from '../components/Card';
 import { colors, spacing } from '../theme';
@@ -27,7 +27,7 @@ export default function MoreScreen({ navigation }) {
 
   const confirmReset = () => Alert.alert(
     'Borrar datos locales',
-    'Esto eliminará tareas, salud, finanzas, lectura y progreso de coreano guardados en este dispositivo.',
+    'Esto eliminará tareas, salud, finanzas, lectura, portadas, notas y progreso de coreano guardados en este dispositivo.',
     [
       { text: 'Cancelar', style: 'cancel' },
       { text: 'Borrar', style: 'destructive', onPress: resetAll },
@@ -37,16 +37,17 @@ export default function MoreScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <ScreenHeader eyebrow="더보기 · more" title="Más" subtitle="Tus registros personales y ajustes de Haru." />
+        <ScreenHeader eyebrow="더보기 · more" title="Más" subtitle="Tus registros personales y herramientas de Haru." />
+        <MenuRow icon={CalendarDays} title="Registro diario" sub="Calendario, tracker y detalle de cada día" onPress={() => navigation.navigate('Registro')} />
+        <MenuRow icon={BookOpen} title="Mi biblioteca" sub="Libros, audiolibros, portadas e historial" onPress={() => navigation.navigate('Lectura')} />
         <MenuRow icon={WalletCards} title="Finanzas" sub="Ingresos, gastos y balance del mes" onPress={() => navigation.navigate('Finanzas')} />
-        <MenuRow icon={BookOpen} title="Lectura" sub="Libros y avance de páginas" onPress={() => navigation.navigate('Lectura')} />
 
         <Text style={styles.section}>DATOS · 데이터</Text>
         <Card style={styles.infoCard}>
           <Database size={20} color={colors.ink} strokeWidth={1.8} />
           <View style={{ flex: 1 }}>
             <Text style={styles.title}>Privacidad local</Text>
-            <Text style={styles.sub}>La versión inicial guarda tus registros en el almacenamiento de la app, no en una nube.</Text>
+            <Text style={styles.sub}>Tus registros y portadas se guardan en el almacenamiento privado de Haru en este dispositivo.</Text>
           </View>
         </Card>
 
@@ -62,8 +63,8 @@ export default function MoreScreen({ navigation }) {
 
         <View style={styles.about}>
           <HeartHandshake size={18} color={colors.muted} strokeWidth={1.6} />
-          <Text style={styles.aboutText}>HARU · 하루 플래너 · v1.0.0</Text>
-          <Text style={styles.aboutSub}>Diseño coreano minimalista en marfil, tinta y tonos tierra.</Text>
+          <Text style={styles.aboutText}>HARU · 하루 플래너 · v2.0.0</Text>
+          <Text style={styles.aboutSub}>Organización cotidiana con estética coreana minimalista.</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -12,6 +12,7 @@ import KoreanScreen from './src/screens/KoreanScreen';
 import MoreScreen from './src/screens/MoreScreen';
 import FinanceScreen from './src/screens/FinanceScreen';
 import ReadingScreen from './src/screens/ReadingScreen';
+import HistoryScreen from './src/screens/HistoryScreen';
 import { colors } from './src/theme';
 
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,7 @@ function MoreStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
       <Stack.Screen name="MásInicio" component={MoreScreen} />
+      <Stack.Screen name="Registro" component={HistoryScreen} />
       <Stack.Screen name="Finanzas" component={FinanceScreen} />
       <Stack.Screen name="Lectura" component={ReadingScreen} />
     </Stack.Navigator>

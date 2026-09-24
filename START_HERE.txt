@@ -1,10 +1,12 @@
-HARU PLANNER
-============
+HARU v2 · ACTUALIZACIÓN RÁPIDA
 
-1) Descomprime este proyecto.
-2) Sube TODO su contenido a un repositorio de GitHub, incluyendo .github
-3) En GitHub: Actions > Build Android APK > Run workflow
-4) Cuando termine: Artifacts > HaruPlanner-Android
-5) Descomprime el archivo descargado y abre HaruPlanner.apk en tu Android.
+1) Sube TODOS los archivos de esta carpeta al MISMO repositorio de Haru en GitHub.
+2) Reemplaza los archivos antiguos cuando GitHub lo solicite.
+3) Verifica que exista .github/workflows/build-android.yml
+4) Abre Actions > Build Android APK.
+5) Espera el check verde.
+6) Descarga Artifacts > HaruPlanner-Android-v2.
+7) Extrae HaruPlanner-v2.apk.
+8) En el celular abre el APK y elige ACTUALIZAR.
 
-Lee README.md para instrucciones completas.
+NO desinstales Haru v1 antes de intentar actualizar si quieres conservar tus datos.

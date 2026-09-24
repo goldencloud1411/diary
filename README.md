@@ -1,108 +1,53 @@
-# HARU · 하루 플래너
+# HARU · 하루 플래너 v2
 
-Aplicación móvil personal para organizar el día con una estética coreana minimalista: marfil, negro, beige, líneas simples y pequeños detalles en hangul.
+Aplicación personal de organización diaria con estética coreana minimalista.
 
-## Qué incluye esta primera versión
+## Novedades v2
 
-- **Hoy:** resumen del día, progreso general, accesos rápidos, agua, palabra coreana y nota diaria.
-- **Pendientes:** tareas de Trabajo, Estudio y Personal; prioridad, completar y eliminar.
-- **Salud:** agua, horas de sueño, movimiento, ánimo y marcador genérico de medicación/suplemento.
-- **Coreano diario:** vocabulario + gramática + ejemplo + traducción; cambia automáticamente cada día.
-- **Finanzas:** ingresos, gastos, balance mensual y categorías.
-- **Lectura:** libros, páginas totales y progreso de lectura.
-- **Persistencia local:** los datos se conservan en el dispositivo mediante AsyncStorage.
+- Registro diario con calendario mensual y tracker.
+- Historial de salud, coreano, lectura, tareas completadas, finanzas y notas.
+- Coreano diario con un banco ampliado de más de 50 palabras y más de 40 estructuras gramaticales.
+- Racha y últimos 7 días de estudio de coreano.
+- Biblioteca con libros y audiolibros.
+- Portadas elegidas desde la galería y guardadas en el almacenamiento privado de Haru.
+- Progreso de libros por páginas o porcentaje.
+- Progreso de audiolibros por tiempo o porcentaje.
+- Historial de sesiones de lectura/escucha.
+- Migración automática de los datos de Haru v1.
 
-> Esta es una app de organización personal. Los apartados de salud son únicamente de registro y no sustituyen atención o indicaciones médicas.
+## Actualizar desde Haru v1
 
----
+El proyecto conserva el mismo identificador Android:
 
-# Cómo subirla a GitHub y sacar el APK sin instalar Android Studio
+`com.harudaily.planner`
 
-## 1. Crear el repositorio
+La versión Android ahora usa `versionCode: 2`, por lo que el APK está preparado para instalarse como actualización sobre v1 siempre que Android reconozca la misma firma.
 
-1. En GitHub crea un repositorio nuevo, por ejemplo `haru-planner`.
-2. Descomprime el ZIP de este proyecto en tu computadora.
-3. Sube **el contenido de la carpeta**, no el ZIP como un solo archivo.
-4. Asegúrate de conservar la carpeta oculta `.github/workflows/`.
-5. Haz el commit a la rama `main`.
+1. Sube el contenido de esta carpeta al mismo repositorio de GitHub, reemplazando los archivos anteriores.
+2. Asegúrate de que también quede actualizado `.github/workflows/build-android.yml`.
+3. Ve a **Actions > Build Android APK**.
+4. Espera a que la ejecución termine con check verde.
+5. Descarga el artifact **HaruPlanner-Android-v2**.
+6. Extrae `HaruPlanner-v2.apk` e instálalo en el celular.
+7. Si Android muestra **Actualizar**, elige esa opción: tus datos locales deberían conservarse.
 
-## 2. Construir el APK desde GitHub
+> Importante: no desinstales Haru v1 antes de intentar la actualización, porque al desinstalar Android borra el almacenamiento local de la app.
 
-El proyecto ya trae el workflow:
+Si Android rechaza la actualización por una firma distinta, no desinstales todavía si tienes información importante: conserva la v1 y revisa primero el proceso de firma para evitar perder datos.
 
-`.github/workflows/build-android.yml`
+## Compilación
 
-Al subirlo a `main`, GitHub Actions intentará compilar automáticamente el APK. También puedes ejecutarlo manualmente:
+El workflow incluido genera una APK `release` autónoma; no necesita Metro ni una computadora para abrirse.
 
-1. Abre tu repositorio.
-2. Ve a **Actions**.
-3. Entra a **Build Android APK**.
-4. Pulsa **Run workflow**.
-5. Espera a que aparezca el check verde.
+## Datos y privacidad
 
-## 3. Descargar la aplicación al celular
+Los datos se guardan localmente mediante AsyncStorage. Las portadas se copian al directorio privado de documentos de la aplicación. La app no usa una nube ni envía tus registros a un servidor.
 
-1. Abre la ejecución terminada en GitHub Actions.
-2. Baja hasta **Artifacts**.
-3. Descarga `HaruPlanner-Android`.
-4. GitHub descargará un ZIP; descomprímelo.
-5. Dentro estará `HaruPlanner.apk`.
-6. Pásalo o descárgalo en tu Android y ábrelo para instalarlo.
-7. Android puede pedir autorización para **instalar apps de origen desconocido** desde el navegador o gestor de archivos que uses.
-
-El APK generado por este workflow es un **debug APK instalable**, pensado para uso personal y pruebas. Para publicarla en Google Play después conviene configurar firma de release, nombre de paquete definitivo, política de privacidad, íconos finales y versión de producción.
-
----
-
-# Ejecutarla localmente para editarla
-
-Necesitas Node.js compatible con la versión de Expo del proyecto.
+## Desarrollo local
 
 ```bash
 npm install
 npx expo start
 ```
 
-Para generar el proyecto Android local:
-
-```bash
-npx expo prebuild --platform android
-```
-
----
-
-# Estructura principal
-
-```text
-HaruPlanner/
-├─ App.js
-├─ app.json
-├─ package.json
-├─ assets/
-│  ├─ icon.png
-│  ├─ adaptive-icon.png
-│  └─ splash.png
-├─ src/
-│  ├─ components/
-│  ├─ data/korean.js
-│  ├─ screens/
-│  ├─ store/AppContext.js
-│  ├─ storage.js
-│  └─ theme.js
-└─ .github/workflows/build-android.yml
-```
-
-# Dónde personalizar
-
-- Colores y estética: `src/theme.js`
-- Vocabulario y gramática: `src/data/korean.js`
-- Pantalla inicial: `src/screens/HomeScreen.js`
-- Tareas: `src/screens/TasksScreen.js`
-- Salud: `src/screens/HealthScreen.js`
-- Finanzas: `src/screens/FinanceScreen.js`
-- Lectura: `src/screens/ReadingScreen.js`
-- Navegación: `App.js`
-
-## Ideas para una v2
-
-Calendario semanal, recordatorios/notificaciones, objetivos y hábitos, estadísticas mensuales, copias de seguridad, exportación CSV/PDF, listas recurrentes, sincronización entre dispositivos y más contenido de coreano.
+Para probar con Expo Go, escanea el QR que muestra Expo.
